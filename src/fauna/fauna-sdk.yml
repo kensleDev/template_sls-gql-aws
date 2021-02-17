@@ -1,0 +1,16 @@
+overwrite: true
+schema:
+  - https://graphql.fauna.com/graphql:
+      headers:
+        Authorization: "Bearer ${FAUNADB_SECRET}"
+documents: "./src/**/*.graphql"
+generates:
+  ./src/fauna/generated/sdk.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-graphql-request"
+
+  ./src/fauna/generated/fauna.schema.graphql:
+    plugins:
+      - schema-ast

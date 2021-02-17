@@ -1,0 +1,59 @@
+query ConvoFeedByUserId($userId: ID!) {
+  convoFeedByUserId(userId: $userId) {
+    userId
+    convos {
+      convoId
+      participants
+      msgs {
+        msgId
+        sender {
+          userId
+        }
+        content
+        status
+        readBy
+
+        createdAt
+        updatedAt
+      }
+    }
+  }
+}
+
+query ConvoById($convoId: ID!) {
+  convoById(convoId: $convoId) {
+    convoId
+    participants
+    msgs {
+      msgId
+      sender {
+        userId
+      }
+      content
+      status
+      readBy
+
+      createdAt
+      updatedAt
+      deleteAt
+    }
+  }
+}
+
+query MsgById($msgId: ID!) {
+  msgById(msgId: $msgId) {
+    data {
+      msgId
+      sender {
+        userId
+      }
+      content
+      status
+      readBy
+
+      createdAt
+      updatedAt
+      deleteAt
+    }
+  }
+}

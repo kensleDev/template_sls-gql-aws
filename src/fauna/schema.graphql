@@ -1,0 +1,70 @@
+enum MsgStatus {
+  LOCAL
+  SERVER
+  DELIVERED
+  READ
+}
+
+type User {
+  userId: ID! @unique
+  userName: String! @unique
+  avatar: String
+}
+
+type Msg {
+  msgId: ID! @unique
+  sender: User!
+  content: String!
+  status: MsgStatus!
+  readBy: [ID]
+
+  createdAt: String!
+  updatedAt: String!
+  deleteAt: String!
+
+  convo: Convo
+}
+
+type Convo {
+  convoId: ID! @unique
+  participants: [String]
+  msgs: [Msg]
+  convoFeeds: [ConvoFeed]
+}
+
+type ConvoFeed {
+  userId: ID! @unique
+  convos: [Convo]
+}
+
+# type Query {
+# msgById(msgId: ID!): [Msg!]!
+# convoFeedByUserId(userId: ID!): ConvoFeed!
+# convoById(convoId: ID!): Convo!
+# userById(userId: ID!): User!
+# }
+
+# type Mutation {
+# createUser(userId: ID!, userName: String!, avatar: String): User! @resolver
+# updateUser(id: ID!, data: User!): User!
+# }
+
+# type Mutation {
+#   createMsg(
+#     msgId: String!
+#     sender: String!
+#     content: String!
+#     status: MsgStatus!
+#     readBy: String!
+#     createdAt: String!
+#     updatedAt: String!
+#   ): Msg! @resolver
+
+#   updateMsg(
+#     msgId: String!
+#     content: String
+#     status: MsgStatus
+#     readBy: String
+#     updatedAt: String
+#   ): Msg @resolver
+# }

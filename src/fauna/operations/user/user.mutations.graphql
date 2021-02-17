@@ -1,0 +1,15 @@
+mutation CreateUser($userId: ID!, $userName: String!, $avatar: String) {
+  createUser(userId: $userId, userName: $userName, avatar: $avatar) {
+    userId
+    userName
+    avatar
+  }
+}
+
+mutation UpdateUser($id: ID!, $data: UserInput!) {
+  updateUser(id: $id, data: $data) {
+    userId
+    userName
+    avatar
+  }
+}

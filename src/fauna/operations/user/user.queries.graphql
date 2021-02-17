@@ -1,0 +1,7 @@
+query UserById($userId: ID!) {
+  userById(userId: $userId) {
+    userId
+    userName
+    avatar
+  }
+}

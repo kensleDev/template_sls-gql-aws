@@ -2,10 +2,10 @@ service: demo-apollo-server-lambda
 provider:
   name: aws
   runtime: nodejs12.x
-  region: es-west-2 
+  region: es-west-2
 functions:
   graphql:
-    handler: src/apollo-server.graphqlHandler
+    handler: src/msg_api/apollo-server.graphqlHandler
     events:
       - http:
           path: graphql
