@@ -14,7 +14,7 @@ async function faunaPipeline(rootFolder) {
 
   try {
     // Upload to fauna
-    // await terminal.cmd("✈️ Upload Schema", `${npmBin}/fauna-gql`, rootFolder);
+    await terminal.cmd("✈️ Upload Schema", `${npmBin}/fauna-gql`, rootFolder);
 
     // Generate Typescript from fauna gql
     await terminal.cmd(
@@ -22,13 +22,6 @@ async function faunaPipeline(rootFolder) {
       `${npmBin}/graphql-codegen -c src/fauna/fauna-sdk.yml -r dotenv/config`,
       rootFolder
     );
-
-    // Generate Typescript schema version
-    // await terminal.cmd(
-    // "♻️ Generate Typescript version of Schema",
-    // `node ./tools/gql/gqlCodegen.js ./src/fauna/generated/fauna.schema.graphql ./src/fauna/generated/fauna.schema.ts`,
-    // rootFolder
-    // );
   } catch (e) {
     console.error(e);
   }

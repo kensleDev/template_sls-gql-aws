@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server-lambda';
 
-import { resolvers } from './resolvers';
+import { resolvers } from '../fauna/resolvers';
 
 import typeDefs from '../fauna/generated/fauna.schema.graphql'
 

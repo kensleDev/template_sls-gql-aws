@@ -13,3 +13,10 @@ mutation UpdateUser($id: ID!, $data: UserInput!) {
     avatar
   }
 }
+
+mutation DeleteUser($id: ID!) {
+  deleteUser(id: $id) {
+    userId
+    userName
+  }
+}

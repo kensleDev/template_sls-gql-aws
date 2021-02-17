@@ -417,6 +417,19 @@ export type UpdateUserMutation = (
   )> }
 );
 
+export type DeleteUserMutationVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type DeleteUserMutation = (
+  { __typename?: 'Mutation' }
+  & { deleteUser?: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'userId' | 'userName'>
+  )> }
+);
+
 export type UserByIdQueryVariables = Exact<{
   userId: Scalars['ID'];
 }>;
@@ -509,6 +522,14 @@ export const UpdateUserDocument = gql`
   }
 }
     `;
+export const DeleteUserDocument = gql`
+    mutation DeleteUser($id: ID!) {
+  deleteUser(id: $id) {
+    userId
+    userName
+  }
+}
+    `;
 export const UserByIdDocument = gql`
     query UserById($userId: ID!) {
   userById(userId: $userId) {
@@ -539,6 +560,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     UpdateUser(variables: UpdateUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpdateUserMutation> {
       return withWrapper(() => client.request<UpdateUserMutation>(print(UpdateUserDocument), variables, requestHeaders));
+    },
+    DeleteUser(variables: DeleteUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteUserMutation> {
+      return withWrapper(() => client.request<DeleteUserMutation>(print(DeleteUserDocument), variables, requestHeaders));
     },
     UserById(variables: UserByIdQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserByIdQuery> {
       return withWrapper(() => client.request<UserByIdQuery>(print(UserByIdDocument), variables, requestHeaders));
