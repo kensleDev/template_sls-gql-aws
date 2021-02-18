@@ -5,7 +5,7 @@ provider:
   region: es-west-2
 functions:
   graphql:
-    handler: src/msg_api/apollo-server.graphqlHandler
+    handler: src/msg-api-server.graphqlHandler
     events:
       - http:
           path: graphql

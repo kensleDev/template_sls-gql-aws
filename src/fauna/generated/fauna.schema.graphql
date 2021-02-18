@@ -87,7 +87,7 @@ type Mutation {
     """The 'Msg' document's ID"""
     id: ID!
   ): Msg
-  createUser(userId: ID!, userName: String!, avatar: String): User!
+  createUser(userId: ID, userName: String, avatar: String): User!
 
   """Delete an existing document in the collection of 'Convo'"""
   deleteConvo(
@@ -144,8 +144,8 @@ scalar Time
 
 """'User' input values"""
 input UserInput {
-  userId: ID!
-  userName: String!
+  userId: ID
+  userName: String
   avatar: String
 }
 
@@ -267,8 +267,8 @@ type User {
 
   """The document's ID."""
   _id: ID!
-  userId: ID!
-  userName: String!
+  userId: ID
+  userName: String
 
   """The document's timestamp."""
   _ts: Long!

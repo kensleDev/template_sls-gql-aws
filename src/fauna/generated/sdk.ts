@@ -109,8 +109,8 @@ export type MutationDeleteMsgArgs = {
 
 
 export type MutationCreateUserArgs = {
-  userId: Scalars['ID'];
-  userName: Scalars['String'];
+  userId?: Maybe<Scalars['ID']>;
+  userName?: Maybe<Scalars['String']>;
   avatar?: Maybe<Scalars['String']>;
 };
 
@@ -174,8 +174,8 @@ export type MutationUpdateConvoArgs = {
 
 /** 'User' input values */
 export type UserInput = {
-  userId: Scalars['ID'];
-  userName: Scalars['String'];
+  userId?: Maybe<Scalars['ID']>;
+  userName?: Maybe<Scalars['String']>;
   avatar?: Maybe<Scalars['String']>;
 };
 
@@ -315,8 +315,8 @@ export type User = {
   avatar?: Maybe<Scalars['String']>;
   /** The document's ID. */
   _id: Scalars['ID'];
-  userId: Scalars['ID'];
-  userName: Scalars['String'];
+  userId?: Maybe<Scalars['ID']>;
+  userName?: Maybe<Scalars['String']>;
   /** The document's timestamp. */
   _ts: Scalars['Long'];
 };
@@ -389,8 +389,8 @@ export type MsgByIdQuery = (
 );
 
 export type CreateUserMutationVariables = Exact<{
-  userId: Scalars['ID'];
-  userName: Scalars['String'];
+  userId?: Maybe<Scalars['ID']>;
+  userName?: Maybe<Scalars['String']>;
   avatar?: Maybe<Scalars['String']>;
 }>;
 
@@ -505,7 +505,7 @@ export const MsgByIdDocument = gql`
 }
     `;
 export const CreateUserDocument = gql`
-    mutation CreateUser($userId: ID!, $userName: String!, $avatar: String) {
+    mutation CreateUser($userId: ID, $userName: String, $avatar: String) {
   createUser(userId: $userId, userName: $userName, avatar: $avatar) {
     userId
     userName
@@ -555,7 +555,7 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     MsgById(variables: MsgByIdQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MsgByIdQuery> {
       return withWrapper(() => client.request<MsgByIdQuery>(print(MsgByIdDocument), variables, requestHeaders));
     },
-    CreateUser(variables: CreateUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateUserMutation> {
+    CreateUser(variables?: CreateUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateUserMutation> {
       return withWrapper(() => client.request<CreateUserMutation>(print(CreateUserDocument), variables, requestHeaders));
     },
     UpdateUser(variables: UpdateUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpdateUserMutation> {

@@ -6,8 +6,8 @@ enum MsgStatus {
 }
 
 type User {
-  userId: ID! @unique
-  userName: String! @unique
+  userId: ID @unique
+  userName: String @unique
   avatar: String
 }
 
@@ -44,10 +44,10 @@ type ConvoFeed {
 # userById(userId: ID!): User!
 # }
 
-# type Mutation {
-# createUser(userId: ID!, userName: String!, avatar: String): User! @resolver
-# updateUser(id: ID!, data: User!): User!
-# }
+type Mutation {
+  createUser(userId: ID, userName: String, avatar: String): User @resolver
+  # updateUser(id: ID!, data: User!): User!
+}
 
 # type Mutation {
 #   createMsg(

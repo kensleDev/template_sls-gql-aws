@@ -1,10 +1,6 @@
-import { resolvers as userResolvers} from './user.resolvers'
-import { resolvers as convoResolvers} from './convo.resolvers'
+import { userResolvers} from './user.resolvers'
+import { convoResolvers} from './convo.resolvers'
 
+import merge from 'lodash.merge'
 
-export const resolvers = {
-  ...userResolvers,
-  ...convoResolvers
-}
-
-
+export const resolvers = merge(userResolvers, convoResolvers)

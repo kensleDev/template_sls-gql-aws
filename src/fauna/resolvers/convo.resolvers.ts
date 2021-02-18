@@ -1,6 +1,6 @@
 import { sdk } from "../../fauna/fauna-sdk-wrapper";
 
-export const resolvers = {
+export const convoResolvers = {
   Query: {
     msgById: (msgId: string) => sdk.MsgById({ msgId }),
     convoFeedByUserId: (userId: string) => sdk.ConvoFeedByUserId({ userId }),

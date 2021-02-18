@@ -1,8 +1,8 @@
 import { ApolloServer } from 'apollo-server-lambda';
 
-import { resolvers } from '../fauna/resolvers';
+import { resolvers } from './fauna/resolvers';
 
-import typeDefs from '../fauna/generated/fauna.schema.graphql'
+import typeDefs from './fauna/generated/fauna.schema.graphql'
 
 
 const apolloServer = new ApolloServer({ resolvers, typeDefs });
