@@ -1,4 +1,5 @@
 type User {
+  userId: ID @unique
   username: String @unique
   avatar: String
   role: UserRole!
@@ -16,14 +17,30 @@ input CreateUserInput {
   avatar: String
 }
 
+input UpdateUserInput {
+  id: ID!
+  username: String
+  password: String
+  role: UserRole
+  avatar: String
+}
+
 input LoginUserInput {
   username: String!
   password: String!
 }
 
+# type Query {
+#   userById(userId: ID!): User!
+# }
+
 type Mutation {
-  createUser(input: CreateUserInput): User! @resolver
+  createUser(input: CreateUserInput!): User! @resolver
+  updateUser(input: UpdateUserInput): User! @resolver
+  deleteUser(input: ID!): User @resolver
+
   loginUser(input: LoginUserInput): String! @resolver
+  logoutUser(input: ID!): String! @resolver
 }
 
 # enum MsgStatus {

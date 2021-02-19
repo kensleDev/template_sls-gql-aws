@@ -1,0 +1,109 @@
+
+
+Update(Function("createUser"), {
+  "body": Query(
+    Lambda(["input"],
+      Create(Collection("User"), {
+        data: {
+          username: Select("username", Var("input")),
+          avatar: Select("avatar", Var("input")),
+          role: Select("role", Var("input")),
+        },
+        credentials: {
+          password: Select("password", Var("input"))
+        }
+      })  
+    )
+  )
+});
+
+Update(Function("updateUser"), {
+    "body": Query(
+        Lambda(["input"],
+            Update(
+                Ref(Collection("User"), Select("id", Var("input"))),  
+                  {
+                      data: {
+                          username: Select("username", Var("input")),
+                          avatar: Select("avatar", Var("input")),
+                          role: Select("role", Var("input")),
+                          password: Select("password", Var("input"))
+                      }
+                  }
+            )
+        )
+    )
+})
+
+Update(Function("deleteUser"), {
+    "body": Query(
+        Lambda(["input"],
+            Delete(
+                Ref(Collection("User"), Var("input"))
+            )
+        )
+    )
+});
+
+Update(Function("loginUser"), {
+  "body": Query(
+    Lambda(["input"],
+      Select(
+        "secret",
+        Login(
+          Match(Index("unique_User_username"), Select("username", Var("input"))), 
+          { password: Select("password", Var("input")) }
+        )
+      )
+    )
+  )
+});
+
+
+mutation CreateAdminUser {
+  createUser(input: {
+    username: "juju"
+    password: "123456"
+    role: ADMIN
+    avatar: "test"
+  }) {
+    username
+    role
+  }
+}
+
+mutation CreateUser {
+  createUser(input: {
+    username: "demo"
+    password: "123456"
+    role: USER,
+    avatar: "test"
+  }) {
+    _id
+    username
+    role
+  }
+}
+
+
+mutation UpdateUser {
+  createUser(input: {
+    _id: ""
+    username: "demo1"
+  }) {
+    _id
+    username
+    role
+  }
+}
+
+mutation DeleteUser { 
+    deleteUser(input: "290969171311723013") 
+}
+
+mutation LoginUser {
+  loginUser(input: {
+    username: "juju"
+    password: "123456"
+  })
+}

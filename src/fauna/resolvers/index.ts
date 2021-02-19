@@ -3,4 +3,6 @@ import { convoResolvers} from './convo.resolvers'
 
 import merge from 'lodash.merge'
 
-export const resolvers = merge(userResolvers, convoResolvers)
+// export const resolvers = merge(userResolvers, convoResolvers)
+
+export const resolvers = userResolvers

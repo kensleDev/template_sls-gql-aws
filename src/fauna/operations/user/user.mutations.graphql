@@ -1,22 +1,24 @@
-mutation CreateUser($args: UserInput) {
-  createUser(args: $args) {
-    userId
-    userName
+mutation CreateUser($input: CreateUserInput) {
+  createUser(input: $input) {
+    _id
+    username
+    role
     avatar
   }
 }
 
-mutation UpdateUser($id: ID!, $data: UserInput!) {
-  updateUser(id: $id, data: $data) {
-    userId
-    userName
+mutation UpdateUser($input: UpdateUserInput!) {
+  updateUser(input: $input) {
+    _id
+    username
+    role
     avatar
   }
 }
 
-mutation DeleteUser($id: ID!) {
-  deleteUser(id: $id) {
-    userId
-    userName
+mutation DeleteUser($input: ID!) {
+  deleteUser(input: $input) {
+    username
+    _id
   }
 }
