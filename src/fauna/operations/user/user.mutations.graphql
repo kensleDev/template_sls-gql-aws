@@ -1,5 +1,5 @@
-mutation CreateUser($userId: ID, $userName: String, $avatar: String) {
-  createUser(userId: $userId, userName: $userName, avatar: $avatar) {
+mutation CreateUser($args: UserInput) {
+  createUser(args: $args) {
     userId
     userName
     avatar

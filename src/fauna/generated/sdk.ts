@@ -109,9 +109,7 @@ export type MutationDeleteMsgArgs = {
 
 
 export type MutationCreateUserArgs = {
-  userId?: Maybe<Scalars['ID']>;
-  userName?: Maybe<Scalars['String']>;
-  avatar?: Maybe<Scalars['String']>;
+  args?: Maybe<UserInput>;
 };
 
 
@@ -172,7 +170,6 @@ export type MutationUpdateConvoArgs = {
 };
 
 
-/** 'User' input values */
 export type UserInput = {
   userId?: Maybe<Scalars['ID']>;
   userName?: Maybe<Scalars['String']>;
@@ -389,9 +386,7 @@ export type MsgByIdQuery = (
 );
 
 export type CreateUserMutationVariables = Exact<{
-  userId?: Maybe<Scalars['ID']>;
-  userName?: Maybe<Scalars['String']>;
-  avatar?: Maybe<Scalars['String']>;
+  args?: Maybe<UserInput>;
 }>;
 
 
@@ -505,8 +500,8 @@ export const MsgByIdDocument = gql`
 }
     `;
 export const CreateUserDocument = gql`
-    mutation CreateUser($userId: ID, $userName: String, $avatar: String) {
-  createUser(userId: $userId, userName: $userName, avatar: $avatar) {
+    mutation CreateUser($args: UserInput) {
+  createUser(args: $args) {
     userId
     userName
     avatar

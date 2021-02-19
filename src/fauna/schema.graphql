@@ -1,41 +1,63 @@
-enum MsgStatus {
-  LOCAL
-  SERVER
-  DELIVERED
-  READ
+type User {
+  username: String @unique
+  avatar: String
+  role: UserRole!
 }
 
-type User {
-  userId: ID @unique
-  userName: String @unique
+enum UserRole {
+  ADMIN
+  USER
+}
+
+input CreateUserInput {
+  username: String!
+  password: String!
+  role: UserRole!
   avatar: String
 }
 
-type Msg {
-  msgId: ID! @unique
-  sender: User!
-  content: String!
-  status: MsgStatus!
-  readBy: [ID]
-
-  createdAt: String!
-  updatedAt: String!
-  deleteAt: String!
-
-  convo: Convo
+input LoginUserInput {
+  username: String!
+  password: String!
 }
 
-type Convo {
-  convoId: ID! @unique
-  participants: [String]
-  msgs: [Msg]
-  convoFeeds: [ConvoFeed]
+type Mutation {
+  createUser(input: CreateUserInput): User! @resolver
+  loginUser(input: LoginUserInput): String! @resolver
 }
 
-type ConvoFeed {
-  userId: ID! @unique
-  convos: [Convo]
-}
+# enum MsgStatus {
+#   LOCAL
+#   SERVER
+#   DELIVERED
+#   READ
+# }
+
+# type Msg {
+#   msgId: ID! @unique
+#   sender: User!
+#   content: String!
+#   status: MsgStatus!
+#   readBy: [ID]
+
+#   createdAt: String!
+#   updatedAt: String!
+#   deleteAt: String!
+
+#   convo: Convo
+# }
+
+# type Convo {
+#   convoId: ID! @unique
+#   participants: [String]
+#   msgs: [Msg]
+#   convoFeeds: [ConvoFeed]
+# }
+
+# type ConvoFeed {
+#   userId: ID! @unique
+#   convos: [Convo]
+# }
 
 # type Query {
 # msgById(msgId: ID!): [Msg!]!
@@ -43,11 +65,6 @@ type ConvoFeed {
 # convoById(convoId: ID!): Convo!
 # userById(userId: ID!): User!
 # }
-
-type Mutation {
-  createUser(userId: ID, userName: String, avatar: String): User @resolver
-  # updateUser(id: ID!, data: User!): User!
-}
 
 # type Mutation {
 #   createMsg(

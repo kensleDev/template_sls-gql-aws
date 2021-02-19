@@ -3,7 +3,7 @@
     "start": "serverless offline start",
     "deploy": "NODE_ENV=production serverless deploy --stage prod",
     "down:prod": "serverless remove --stage prod",
-    "pipe:fauna": "node tools/fauna/fauna.pipeline"
+    "pipe:fauna": "node tools/fauna/fauna.pipeline schema"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.20.1",
@@ -23,6 +23,7 @@
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "graphql-tag": "^2.11.0",
+    "serverless": "^2.25.2",
     "serverless-dotenv-plugin": "^3.1.0",
     "serverless-offline": "^6.8.0",
     "serverless-webpack": "^5.3.5",
